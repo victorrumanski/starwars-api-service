@@ -1,0 +1,40 @@
+# ---------------------------------------------------------
+# Phase 5: Star Wars API Facade Service (Internal Only)
+# Provides resilience patterns (Circuit Breaker, Rate Limiter)
+# ---------------------------------------------------------
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: starwars-api-service
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: starwars-api-service
+  template:
+    metadata:
+      labels:
+        app: starwars-api-service
+    spec:
+      containers:
+      - name: starwars-api-service
+        image: starwars-api-service:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+---
+# INTERNAL SERVICE ONLY
+apiVersion: v1
+kind: Service
+metadata:
+  name: starwars-api-service
+  namespace: apps
+spec:
+  selector:
+    app: starwars-api-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
