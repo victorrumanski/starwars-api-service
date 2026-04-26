@@ -1,0 +1,11 @@
+apiVersion: v2
+name: starwars-api-service
+description: Star Wars Facade microservice
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+
+dependencies:
+  - name: common-microservice
+    repository: "oci://ghcr.io/victorrumanski/charts"
+    version: 1.0.0

@@ -20,8 +20,8 @@ spec:
     spec:
       containers:
       - name: starwars-api-service
-        image: starwars-api-service:latest
-        imagePullPolicy: Never
+        image: ghcr.io/victorrumanski/starwars-api-service:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
 ---
